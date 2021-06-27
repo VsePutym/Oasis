@@ -1,0 +1,13 @@
+.CountWrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputCount{
+    width: 50px;
+    font-size: 20px;
+}
+
+.btnCount{
+    background-color: transparent;
+}

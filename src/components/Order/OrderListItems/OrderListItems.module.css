@@ -1,0 +1,23 @@
+.items {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.itemName {
+    flex-grow: 1;
+}
+.itemPrice {
+    margin-left: 20px;
+    margin-right: 10px;
+    min-width: 65px;
+    text-align: center;
+}
+.toppings{
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

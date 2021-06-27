@@ -1,0 +1,15 @@
+.ToppingLabel {
+    cursor: pointer;
+    display: block;
+}
+.ToppingInput {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.ToppingWrapper{
+    column-count: 2;
+    column-gap: 15px;
+    margin: 0 auto;
+    max-width: 500px;
+}
