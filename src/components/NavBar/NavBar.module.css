@@ -30,3 +30,22 @@
     border-radius: 25px;
     font-family: Pacifico;
 }
+.logOut{
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 700;
+    margin-right: 30px;
+    background-color: transparent;
+    color: white;
+    border-radius: 30%;
+}
+
+.User{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.Figure{
+    margin: 0 25px;
+}

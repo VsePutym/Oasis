@@ -8,12 +8,12 @@ const  Order = ({hookOrders, setOrder, setOpenItem}) => {
   const deleteItems = index => {
 
 
-    const newOrders = [...hookOrders]
-    newOrders.splice(index, 1);
-    setOrder(newOrders)
-    // const newOrders = orders.filter((item, i) => {
-    //   return index !== i});
+    // const newOrders = [...hookOrders]
+    // newOrders.splice(index, 1);
     // setOrder(newOrders)
+    const newOrders = hookOrders.filter((item, i) => {
+      return index !== i});
+    setOrder(newOrders)
   }
 
   const total = hookOrders.reduce((result, hookOrders) => {
