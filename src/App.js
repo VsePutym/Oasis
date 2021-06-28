@@ -8,6 +8,7 @@ import {UseOpenItem} from "./Hooks/useOpenItem";
 import UseOrder from "./Hooks/useOrder";
 import firebase from "firebase";
 import useAuth from "./Hooks/useAuth";
+import useTitle from "./Hooks/useTitle";
 
 
 const firebaseConfig = {
@@ -27,13 +28,14 @@ const App = () => {
   const auth = useAuth(firebase.auth)
   const getOpenItem = UseOpenItem();
   const getOrders = UseOrder();
+  const changeTitle = useTitle(getOpenItem);
 
   return (
     <div className="App">
       <NavBar {...auth}/>
-      <Order {...getOrders} {...getOpenItem} {...auth}/>
+      <Order {...getOrders} {...getOpenItem} {...auth} firebaseDatabase={firebase.database}/>
       <Menu {...getOpenItem} />
-      {getOpenItem.hookOpenItem && <ModalWindows {...getOpenItem} {...getOrders}/>}}
+      {getOpenItem.hookOpenItem && <ModalWindows  {...getOpenItem} {...getOrders}/>}}
     </div>
   );
 }

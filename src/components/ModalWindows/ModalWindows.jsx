@@ -8,6 +8,7 @@ import Choices from "./Choices/Choices";
 import UseCount from "../../Hooks/useCount";
 import UseToppings from "../../Hooks/useToppings";
 import UseChoices from "../../Hooks/useChoices";
+import useTitle from "../../Hooks/useTitle";
 
 const BannerItem = styled.div`
   width: 100%;
@@ -21,13 +22,12 @@ const BannerItem = styled.div`
 
 
 const ModalWindows = ({hookOpenItem, setOpenItem, hookOrders, setOrder}) => {
+
+
   const getCounter = UseCount(hookOpenItem.count);
   const getToppings = UseToppings(hookOpenItem);
   const getChoices =  UseChoices();
   const isEdit = hookOpenItem.index > -1;
-
-  debugger
-
 
   const closeModal = e => {
       if(e.target.id === 'overlay'){
@@ -46,11 +46,8 @@ const ModalWindows = ({hookOpenItem, setOpenItem, hookOrders, setOrder}) => {
   const editOrder = () => {
     const newOrders = [...hookOrders];
     newOrders[hookOpenItem.index] = order;
-    console.log(hookOrders)
     setOrder(newOrders);
-    console.log(hookOrders)
-    // setOpenItem(null);
-
+    setOpenItem(null);
   }
 
 
