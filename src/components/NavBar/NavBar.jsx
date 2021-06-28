@@ -19,7 +19,7 @@ const NavBar = ({authentication, logIn, logOut}) => {
         </div>
         : <div className={styles.Login} onClick={logIn}>
           <div>
-            <button className={styles.btn}>Login</button>
+            <button className={styles.btn}>Войти</button>
           </div>
           <div><img src={loginImg} alt=""/></div>
         </div>}
