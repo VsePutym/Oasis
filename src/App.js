@@ -28,7 +28,7 @@ const App = () => {
   const auth = useAuth(firebase.auth)
   const getOpenItem = UseOpenItem();
   const getOrders = UseOrder();
-  const changeTitle = useTitle(getOpenItem);
+  useTitle(getOpenItem.hookOpenItem);
 
   return (
     <div className="App">

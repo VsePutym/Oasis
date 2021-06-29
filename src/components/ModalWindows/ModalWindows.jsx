@@ -8,7 +8,6 @@ import Choices from "./Choices/Choices";
 import UseCount from "../../Hooks/useCount";
 import UseToppings from "../../Hooks/useToppings";
 import UseChoices from "../../Hooks/useChoices";
-import useTitle from "../../Hooks/useTitle";
 
 const BannerItem = styled.div`
   width: 100%;

@@ -1,18 +1,10 @@
 import {useEffect} from "react";
 
- const useTitle = (getOpenItem) => {
-
-   const checkModal = () =>{
-     if(!getOpenItem.hookOpenItem){
-       document.title = 'React app'
-     } else {
-       document.title = getOpenItem.hookOpenItem.name
-     }
-   }
+ const useTitle = (hookOpenItem) => {
 
  useEffect(() => {
-   checkModal()
-  }, [getOpenItem])
+   document.title = hookOpenItem ? hookOpenItem.name : "Oasis"
+  }, [hookOpenItem])
 }
 
 export default useTitle;

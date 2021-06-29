@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const instance = axios.crete({
+const instance = axios.create({
   withCredentials: true,
   baseURL: `https://google.com`,
   headers: `API-KEY: test`
