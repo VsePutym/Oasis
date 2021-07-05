@@ -1,0 +1,28 @@
+.Modal{
+    background-color: white;
+    width: 600px;
+    padding: 30px;
+}
+
+.Text{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.Overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .5);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.OrderTitle,
+.Total{
+    text-align: center;
+    padding-bottom: 30px;
+}

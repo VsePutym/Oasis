@@ -6,9 +6,16 @@ import ModalWindows from "./components/ModalWindows/ModalWindows";
 import Order from "./components/Order/Order";
 import {UseOpenItem} from "./Hooks/useOpenItem";
 import UseOrder from "./Hooks/useOrder";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/auth';        // for authentication
+import 'firebase/database';    // for realtime database
 import useAuth from "./Hooks/useAuth";
 import useTitle from "./Hooks/useTitle";
+import useDB from "./Hooks/useDB";
+import useOrderConfirm from "./Hooks/useOrederConfirm";
+import OrderConfirm from "./components/Order/OrderdConfirm/OrderConfirm";
+import {Context} from "./Functions/context";
+
 
 
 const firebaseConfig = {
@@ -29,15 +36,24 @@ const App = () => {
   const getOpenItem = UseOpenItem();
   const getOrders = UseOrder();
   useTitle(getOpenItem.hookOpenItem);
+  const database = firebase.database();
+  const DBMenu = useDB(database);
+  const getOrderConfirm = useOrderConfirm();
+
 
   return (
-    <div className="App">
-      <NavBar {...auth}/>
-      <Order {...getOrders} {...getOpenItem} {...auth} firebaseDatabase={firebase.database}/>
-      <Menu {...getOpenItem} />
-      {getOpenItem.hookOpenItem && <ModalWindows  {...getOpenItem} {...getOrders}/>}}
-    </div>
+    <Context.Provider value={{auth,getOpenItem, getOrders, getOrderConfirm, database}}>
+      <div className="App">
+        <NavBar />
+        <Order />
+        <Menu DBMenu={DBMenu} />
+        {getOpenItem.hookOpenItem && <ModalWindows />}
+        {getOrderConfirm.hookOpenOrderConfirm ? <OrderConfirm /> : ""}
+      </div>
+    </Context.Provider>
   );
 }
 
 export default App;
+
+

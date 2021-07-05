@@ -3,12 +3,11 @@ import ListItems from "./ListItems/ListItems";
 import Banner from "./Banners/Banners";
 import useAxios from "../../Hooks/useAxios";
 import Preloader from "../../Rpeloader/Preloader";
+import React, {useContext} from "react";
+import {Context} from "../../Functions/context";
 
-const Menu = ({...getOpenItem}) => {
-
-  const res = useAxios();
-  const DBMenu = res.response;
-
+const Menu = React.memo(({DBMenu}) => {
+  // const {getOpenItem: {setOpenItem}} = useContext(Context);
 
   return (
     <div className={styles.menu}>
@@ -17,19 +16,18 @@ const Menu = ({...getOpenItem}) => {
           <Banner/>
           <section className={styles.section}>
             <h2>Burgers</h2>
-            <ListItems {...getOpenItem} DBMenu={DBMenu.burger}/>
+            <ListItems  DBMenu={DBMenu.burger}/>
           </section>
 
           <section className={styles.section}>
             <h2>Snacks</h2>
-            <ListItems {...getOpenItem} DBMenu={DBMenu.other}/>
+            <ListItems  DBMenu={DBMenu.other}/>
           </section>
         </>
-        : res.error ? <div>Error suchca</div>
         : <Preloader />
       }
     </div>
   )
-};
+});
 
 export default Menu;

@@ -1,8 +1,11 @@
 import logo from '../../images/logo.svg'
 import loginImg from '../../images/sign.svg'
 import styles from './NavBar.module.css'
+import {useContext} from "react";
+import {Context} from "../../Functions/context";
 
-const NavBar = ({authentication, logIn, logOut}) => {
+const NavBar = () => {
+  const {auth: {authentication, logIn, logOut}} = useContext(Context);
   return (
     <div className={styles.NavBar}>
       <div className={styles.logo}>

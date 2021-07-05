@@ -1,6 +1,8 @@
 import styles from './ListItems.module.css';
 import styled from 'styled-components';
 import {convectRuB} from "../../../Functions/Functions";
+import {useContext} from "react";
+import {Context} from "../../../Functions/context";
 
 const Item = styled.li`
   position: relative;
@@ -39,7 +41,9 @@ const Item = styled.li`
   }
 `;
 
-const ListItems = ({setOpenItem, DBMenu}) => {
+const ListItems = ({DBMenu}) => {
+
+  const {getOpenItem: {setOpenItem}} = useContext(Context);
 
   return (
     <ul className={styles.items}>

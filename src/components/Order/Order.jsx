@@ -2,27 +2,14 @@ import s from './Order.module.css';
 import ButtonCheckout from "../Buttons/Battons";
 import OrderListItems from "./OrderListItems/OrderListItems";
 import {convectRuB, projection, totalPriceItem} from "../../Functions/Functions";
+import React, {useContext} from "react";
+import {Context} from "../../Functions/context";
 
-const rulesData = {
-  name: ['name'],
-  price: ['price'],
-  count: ['count'],
-  topping: ['topping', arr => arr.filter(obj => obj.checked).map(obj => obj.name), arr => arr.length ? arr : 'no toppings'],
-  choice: ['choices', item => item ? item : 'no choices']
-}
 
-const Order = ({hookOrders, setOrder, setOpenItem, authentication, logIn, firebaseDatabase}) => {
 
-  const dataBase = firebaseDatabase();
+const Order = React.memo(() => {
+const {auth: {authentication, logIn}, getOrders: {hookOrders, setOrder}, getOrderConfirm: {setOpenOrderConfirm}} = useContext(Context);
 
-  const sendOrder = () => {
-    const newOrder = hookOrders.map(projection(rulesData));
-    dataBase.ref('orders').push().set({
-      nameClient: authentication.displayName,
-      email: authentication.email,
-      order: newOrder
-    })
-  }
 
   const deleteItems = index => {
     const newOrders = hookOrders.filter((item, i) => {
@@ -43,8 +30,7 @@ const Order = ({hookOrders, setOrder, setOpenItem, authentication, logIn, fireba
     if (authentication === null) {
       logIn();
     } else {
-      sendOrder();
-      setOrder([]);
+      setOpenOrderConfirm(true)
     }
   }
 
@@ -54,19 +40,23 @@ const Order = ({hookOrders, setOrder, setOpenItem, authentication, logIn, fireba
       <div className={s.orderContent}>
         {hookOrders.length ?
           <ul className={s.orderList}>
-            {hookOrders.map((items, index) => <OrderListItems key={index} setOpenItem={setOpenItem} index={index}
+            {hookOrders.map((items, index) => <OrderListItems key={index} index={index}
                                                               deleteItems={deleteItems} items={items}/>)}
           </ul>
           : <p className={s.emptyItem}>Список заказов пуст</p>}
       </div>
-      <div className={s.total}>
-        <span>Итого</span>
-        <span>{totalCounter}</span>
-        <span className={s.itemsPrice}>{convectRuB(total)}</span>
-      </div>
-      <div><ButtonCheckout onClick={testAuth}>Оформить</ButtonCheckout></div>
+      {hookOrders.length
+        ? <>
+          <div className={s.total}>
+            <span>Итого</span>
+            <span>{totalCounter}</span>
+            <span className={s.itemsPrice}>{convectRuB(total)}</span>
+          </div>
+          <div><ButtonCheckout onClick={testAuth}>Оформить</ButtonCheckout></div>
+        </>
+      : null}
     </div>
   )
-}
+})
 
 export default Order;

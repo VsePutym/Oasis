@@ -8,6 +8,8 @@ import Choices from "./Choices/Choices";
 import UseCount from "../../Hooks/useCount";
 import UseToppings from "../../Hooks/useToppings";
 import UseChoices from "../../Hooks/useChoices";
+import {useContext} from "react";
+import {Context} from "../../Functions/context";
 
 const BannerItem = styled.div`
   width: 100%;
@@ -20,8 +22,8 @@ const BannerItem = styled.div`
 
 
 
-const ModalWindows = ({hookOpenItem, setOpenItem, hookOrders, setOrder}) => {
-
+const ModalWindows = () => {
+const {getOpenItem: {hookOpenItem, setOpenItem}, getOrders: {hookOrders, setOrder}} = useContext(Context);
 
   const getCounter = UseCount(hookOpenItem.count);
   const getToppings = UseToppings(hookOpenItem);

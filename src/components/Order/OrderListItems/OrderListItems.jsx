@@ -2,7 +2,8 @@ import trash from '../../../images/trash.svg'
 import s from './OrderListItems.module.css'
 import styled from "styled-components";
 import {convectRuB, totalPriceItem} from "../../../Functions/Functions";
-import {useRef} from "react";
+import React, {useContext, useRef} from "react";
+import {Context} from "../../../Functions/context";
 
 const TrashBtn = styled.button`
   width: 24px;
@@ -17,7 +18,9 @@ const TrashBtn = styled.button`
 `;
 
 
-const OrderListItems = ({items, deleteItems, index, setOpenItem}) => {
+const OrderListItems = React.memo(({items, deleteItems, index}) => {
+
+  const {getOpenItem: {setOpenItem}} = useContext(Context);
 
   let topping;
   const showToppings =(items) => {
@@ -40,6 +43,6 @@ const OrderListItems = ({items, deleteItems, index, setOpenItem}) => {
       {items.toppings && <div className={s.toppings}><h3>Допы:</h3> {topping}</div>}
     </div>
   )
-}
+});
 
 export default OrderListItems;
